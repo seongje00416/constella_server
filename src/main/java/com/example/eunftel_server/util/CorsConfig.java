@@ -15,16 +15,14 @@ public class CorsConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(Arrays.asList("*"));  // setAllowedOrigins 대신 사용
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "x-requested-with"));
+        configuration.setAllowedOrigins(Arrays.asList("*"));  // Nginx가 처리하므로 모든 origin 허용
+        configuration.setAllowedMethods(Arrays.asList("*"));  // 모든 HTTP 메서드 허용
+        configuration.setAllowedHeaders(Arrays.asList("*"));  // 모든 헤더 허용
         configuration.setMaxAge(3600L);
-        configuration.setAllowCredentials(true);
-        configuration.setExposedHeaders(Arrays.asList("Authorization"));
+        configuration.setAllowCredentials(false);  // true에서 false로 변경 (와일드카드 origin을 사용하기 때문)
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-
 }
