@@ -11,12 +11,14 @@ public record GetAllMusicResponse(
         @Schema( description = "음악 ID" ) Long id,
         @Schema( description = "유튜브 ID" ) String youtubeID,
         @Schema( description = "제목" ) String title,
-        @Schema( description = "가수" ) Member singer
+        @Schema( description = "가수" ) Member singer,
+        @Schema( description = "앨범" ) String album
 ) {
     public static GetAllMusicResponse of(Song song ){
         return GetAllMusicResponse.builder()
                 .id( song.getId() )
                 .youtubeID( song.getYoutubeID() )
+                .album( song.getAlbum() )
                 .title( song.getTitle() )
                 .singer( song.getSinger() )
                 .build();

@@ -62,4 +62,9 @@ public class SongImplements implements SongController {
         PageRequest pageRequest = PageRequest.of( page, size );
         return SuccessResponse.of( songService.getRecommendMusics( pageRequest, object, value ) ).asHttp( HttpStatus.OK );
     }
+
+    @Override
+    public ResponseEntity<SuccessResponse<String>> getSingWith(String youtubeId) {
+        return SuccessResponse.of( songService.getSingWith( youtubeId ) ).asHttp( HttpStatus.OK );
+    }
 }

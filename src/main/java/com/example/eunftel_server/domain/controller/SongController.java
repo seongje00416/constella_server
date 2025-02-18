@@ -103,4 +103,16 @@ public interface SongController {
             @RequestParam( value = "object" ) String object,
             @RequestParam( value = "value" ) String value
     );
+
+    @Operation( summary = "노래를 같이 부른 가수 조회 API", description = "듀엣, 팀 등 여럿이 부른 노래의 경우 같이 부른 가수들 조회" )
+    @ApiResponses( value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "조회 성공"
+            )
+    })
+    @GetMapping( "/getSingWith" )
+    ResponseEntity<SuccessResponse<String>> getSingWith(
+            @RequestParam( value = "youtubeId" ) String youtubeId
+    );
 }

@@ -93,4 +93,13 @@ public class SongService {
         return PageUtil.toPageResponse( limitedPage ).map( song -> { return GetAllMusicResponse.of( song ); } );
     }
 
+    public String getSingWith( String youtubeId ){
+        List<Song> singWith = songRepository.findAllByYoutubeID( youtubeId );
+        String result = "";
+        for( Song song : singWith ){
+            result = result + "," + song.getSinger();
+        }
+        return result;
+    }
+
 }
